@@ -1,0 +1,117 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A AWESOME WEB !</title>
+    <link rel="stylesheet" href="{% static '/css/semantic.css'%}">
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+      <script src="{% static 'js/semantic.js' %}"></script>
+
+	
+  </head>
+  <body>
+
+  <div class="ui thin visible left sidebar inverted vertical menu">
+      <div class="header item">
+          <img src="{% static 'images/logo2.png' %}">
+      </div>
+
+      <div class="item">
+          Documents
+          <i class="browser icon"></i>
+      </div>
+      <div class="item">
+          Charts
+          <i class="bar chart icon"></i>
+      </div>
+      <div class="item">
+          Others
+          <i class="idea icon"></i>
+      </div>
+  </div>
+
+  <div class="pusher">
+
+
+  <div class="ui menu">
+      <div class="header item" id="menu">
+          Menu
+          <i class="content icon"></i>
+      </div>
+      <div class="item">About us</div>
+      <div class="item">Location</div>
+      <div class="item">Others</div>
+  </div>
+
+
+  <div class="ui vertical menu" style="float:right;margin: 5px 20% 5px 10%" >
+  <div class="item">
+    <div class="ui input"><input type="text" placeholder="Search..."></div>
+  </div>
+  <div class="item">Home <div class="menu">
+      <a class="active item">搜索</a>
+      <a class="item">Add</a>
+      <a class="item">Remove</a>
+    </div>
+  </div>
+  <a class="item"><i class="grid layout icon"></i> Browse </a>
+  <a class="item">Messages </a>
+  <div class="ui dropdown item">更多 <i class="dropdown icon"></i> <div class="menu">
+      <a class="item"><i class="edit icon"></i> 编辑个人资料</a>
+      <a class="item"><i class="globe icon"></i> 选择语言</a>
+      <a class="item"><i class="settings icon"></i> 账户设定</a>
+    </div>
+  </div>
+</div>
+
+
+	<div class="ui container">
+	<div class="ui divided items" style="margin: 5px 50% 5px 5px">
+        {% for i in ArtiInfo %}
+        <div class="item">
+            <div class="content">
+                <div class="header">
+                    {{ i.title }}
+                </div>
+                <div class="description">
+                    <p>
+                        {{ i.address }}
+                    </p>
+
+                </div>
+                <div class="ui labeled button" tabindex="0" style="margin: 5px 5px 5px 5px">
+                    <div class ="ui red button"><i class="heart icon"></i>Like</div>
+                        <a class="ui basic red left pointing label">{{ i.person_look_count }}</a>
+                </div>
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui basic blue button"><i class="fork icon"></i> Done Deal </div>
+                    <a class="ui basic left pointing blue label">
+                        {{ i.deal_number }}</a>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+        <div class="ui small pagination menu">
+            {% if ArtiInfo.has_previous %}
+            <a href="?page={{ ArtiInfo.previous_page_number }}" class="active item"><</a>
+            {% endif %}
+
+            <a class="disabled item">page {{ ArtiInfo.number }} of {{ ArtiInfo.paginator.num_pages }}</a>
+            {% if ArtiInfo.has_next %}
+            <a href="?page={{ ArtiInfo.next_page_number }}" class="active item">></a>
+            {% endif %}
+        </div>
+	</div>
+
+</div>
+<script>
+    $('#menu').click(function (){
+        $('.ui.sidebar').sidebar('toggle')
+    });
+</script>
+  </body>
+</html>

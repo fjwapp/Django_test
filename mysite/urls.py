@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from ganji.views import index,blog
+from ganji.views import index,blog,index_semantic,charts,My_Blog
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
     url(r'^blog/', blog),
+    url(r'^index_semantic/', index_semantic),
+    url(r'^charts/', charts),
+    url(r'^My_Blog/', My_Blog,name='My_Blog'),
+
 ]

@@ -1,10 +1,54 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>My blog</title>
+    <link rel="stylesheet" href="{% static '/css/semantic.css'%}">
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/semantic.js' %}"></script>
 </head>
 <body>
-$END$
+<div class="ui statistics">
+  <div class="teal statistic">
+    <div class="value">
+      27
+    </div>
+    <div class="label">Views</div>
+  </div>
+</div>
+
+<h2>Comments area</h2>
+{% for comment in comment_list %}
+
+    <div class="ui comments">
+  <h3 class="ui dividing header">Comments</h3>
+  <div class="comment">
+    <a class="avatar">
+      <img src="{% static "/images/0001.jpg"%}">
+    </a>
+    <div class="content">
+      <a class="author">{{ comment.name }}</a>
+      <div class="metadata">
+        <span class="date">2:00 pm</span>
+      </div>
+      <div class="text">{{ comment.comment }}</div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+  </div>
+    </div>
+
+{% endfor %}
+<form class="ui form" method="post">
+
+{{ form_list.as_p }}
+    {% csrf_token %}
+
+<button class="ui button" type="submit">Submit</button>
+
+</form>
+
 </body>
 </html>

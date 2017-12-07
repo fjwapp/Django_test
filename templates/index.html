@@ -19,27 +19,24 @@
   <div class="main-content">
     <h2>Article</h2>
     <ul class="article">
+        {% for i in ArtiInfo %}
       <li>
         <img src="{% static "images/0001.jpg" %}" width="100" height="90">
-        <h3><a href="#">The blah</a></h3>
-        <p>This is a dangerously delicious cake.</p>
+        <h3><a href="#">{{ i.title }}</a></h3>
+        <p>{{ i.address }}</p>
+
       </li>
-      <li>
-        <img src="{% static "images/0002.jpg" %}" width="100" height="90">
-        <h3><a href="#">The blah</a></h3>
-        <p>It's always taco night somewhere!</p>
-      </li>
-      <li>
-        <img src="{% static "images/0003.jpg" %}" width="100" height="90">
-        <h3><a href="#">The blah</a></h3>
-        <p>Omelette you in on a little secret </p>
-      </li>
-      <li>
-        <img src="{% static "images/0004.jpg" %}" width="100" height="90">
-        <h3><a href="#">The blah</a></h3>
-        <p>It's a sandwich.  That's all we .</p>
-      </li>
+        {% endfor %}
     </ul>
+
+    <div class="main-content-pagitor"></div>
+  {% if ArtiInfo.has_previous %}
+<a href="?page={{ ArtiInfo.previous_page_number }}">< Pre</a>
+  {% endif %}
+  <span> {{ ArtiInfo.number }}of{{ ArtiInfo.paginator.num_pages }} </span>
+  {% if ArtiInfo.has_next %}
+  <a href="?page={{ ArtiInfo.next_page_number }}">Next ></a>
+  {% endif %}
   </div>
   <div class="footer">
     <p>&copy; Fjwapp</p>
